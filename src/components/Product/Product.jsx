@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useLocation, useNavigate } from 'react-router-dom';
 const Product = ({ product }) => {
     const { idMeal, strMeal, strMealThumb } = product;
-    console.log(idMeal)
+
     const location = useLocation();
     const item = location.pathname;
     const navigate = useNavigate();
