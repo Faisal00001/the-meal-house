@@ -1,27 +1,34 @@
 import 'react-awesome-slider/dist/styles.css';
-import { Link, NavLink, Outlet, useLoaderData } from 'react-router-dom';
+import { Link, NavLink, Outlet, useLoaderData, useNavigate } from 'react-router-dom';
 
 const Home = () => {
     let categories = useLoaderData({});
     categories = categories.categories;
+    const navigate = useNavigate();
+    const handleSearch = () => {
+        const inputTextElement = document.querySelector('#input-container');
+        const inputTextValue = inputTextElement.value
+        navigate(`/${inputTextValue}`)
+        inputTextElement.value = ''
+    }
     return (
         <div>
             <div className='container mx-auto'>
                 <nav className='flex flex-col md:flex-row
             p-5 space-y-4 md:space-y-0 items-center'>
                     <div className='md:flex-1 flex justify-center md:justify-start'>
-                        <h3 className='text-2xl md:text-4xl font-bold'>Meal House</h3>
+                        <h3 className='text-2xl md:text-4xl font-bold'>Santa <span className='text-rose-700'>Meal</span> House</h3>
                     </div>
                     <div className='md:flex-1 flex justify-center md:justify-center text-xl md:text-2xl font-medium'>
                         <ul className='flex gap-5'>
                             <NavLink to={'/'}>Home</NavLink>
-                            <li>About</li>
-                            <li>Contact</li>
+                            <NavLink to={'/about'}>About</NavLink>
+                            <NavLink to={'/contact'}>Contact</NavLink>
                         </ul>
                     </div>
                     <div className='md:flex-1 flex items-center justify-center md:justify-end'>
-                        <button className='btn bg-blue-500 mr-2'>Search</button>
-                        <input type="text" placeholder="Search" className="input input-bordered input-primary w-[200px] max-w-xs h-[40px]" />
+                        <button onClick={handleSearch} className='btn bg-slate-600 text-white font-bold hover:text-black mr-2'>Search</button>
+                        <input id='input-container' type="text" placeholder="Search" className="input input-bordered input-primary w-[200px] max-w-xs h-[40px]" />
                     </div>
                 </nav>
 
